@@ -28,9 +28,17 @@ Now for the main attraction.  Let's make sure the plan looks good:
 
     terraform plan
 
+That gives:
+
+![](./images/2%20-%20terraform%20plan.png)
+
 If that's good, we can go ahead and apply the deploy:
 
     terraform apply
+
+That gives:
+
+![](./images/2%20-%20terraform%20apply.png)
 
 ## Destroy the Deployment
 When you no longer need the deployment, you can run this command to destroy it:
