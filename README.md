@@ -1,10 +1,10 @@
 # oci-couchbase
 [simple](simple) is a Terraform module that will deploy DSE on OCI. Instructions on how to use it are below. Best practices are detailed in [this document](bestpractices.md).
 
-# Prerequisites
+## Prerequisites
 First off you'll need to do some pre deploy setup.  That's all detailed [here](https://github.com/cloud-partners/oci-prerequisites).
 
-# Clone the Module
+## Clone the Module
 Now, you'll want a local copy of this repo.  You can make that with the commands:
 
     git clone https://github.com/cloud-partners/oci-couchbase.git
@@ -23,7 +23,7 @@ This gives the following output:
 
 ![](./images/2%20-%20terraform%20init.png)
 
-# Deploy
+## Deploy
 Now for the main attraction.  Let's make sure the plan looks good:
 
     terraform plan
@@ -32,7 +32,7 @@ If that's good, we can go ahead and apply the deploy:
 
     terraform apply
 
-# Destroy the Deployment
+## Destroy the Deployment
 When you no longer need the deployment, you can run this command to destroy it:
 
     terraform destroy
