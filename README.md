@@ -1,3 +1,5 @@
+# Important - This doesn't work yet!
+
 # oci-couchbase
 [simple](simple) is a Terraform module that will deploy DSE on OCI. Instructions on how to use it are below. Best practices are detailed in [this document](bestpractices.md).
 
