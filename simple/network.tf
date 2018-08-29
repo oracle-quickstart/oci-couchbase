@@ -43,7 +43,7 @@ resource "oci_core_security_list" "security_list" {
 
 resource "oci_core_subnet" "subnet" {
   compartment_id      = "${var.tenancy_ocid}"
-  availability_domain = "${lookup(data.oci_identity_availability_domains.availability_domains.availability_domains[0],"name")}"
+  availability_domain = "${lookup(data.oci_identity_availability_domains.availability_domains.availability_domains[0], "name")}"
   cidr_block          = "10.0.0.0/16"
   display_name        = "subnet"
   vcn_id              = "${oci_core_virtual_network.virtual_network.id}"

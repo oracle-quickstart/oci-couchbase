@@ -32,17 +32,21 @@ Now for the main attraction.  Let's make sure the plan looks good:
 
 That gives:
 
-![](./images/2%20-%20terraform%20plan.png)
+![](./images/3%20-%20terraform%20plan.png)
 
 If that's good, we can go ahead and apply the deploy:
 
     terraform apply
 
-That gives:
+You'll need to enter `yes` when prompted.  Once complete, you'll see something like this:
 
-![](./images/2%20-%20terraform%20apply.png)
+![](./images/4%20-%20terraform%20apply.png)
 
 ## Destroy the Deployment
 When you no longer need the deployment, you can run this command to destroy it:
 
     terraform destroy
+
+You'll need to enter `yes` when prompted.  Once complete, you'll see something like this:
+
+![](./images/5%20-%20terraform%20destroy.png)

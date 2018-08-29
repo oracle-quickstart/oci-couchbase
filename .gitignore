@@ -1,2 +1,3 @@
 .terraform
 simple/terraform.tfstate
+simple/terraform.tfstate.backup
