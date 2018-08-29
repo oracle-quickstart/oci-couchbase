@@ -1,6 +1,8 @@
-variable "region" {
-  default = "us-ashburn-1"
-}
+# ---------------------------------------------------------------------------------------------------------------------
+# Environmental variables
+# You probably want to define these as environmental variables.
+# Instructions on that are here: https://github.com/cloud-partners/oci-prerequisites
+# ---------------------------------------------------------------------------------------------------------------------
 
 # Required by the OCI Provider
 variable "tenancy_ocid" {}
@@ -12,13 +14,23 @@ variable "private_key_path" {}
 variable "ssh_public_key" {}
 variable "ssh_private_key" {}
 
-variable "couchbase_cluster" {
-  type = "map"
-  default = {
-    vm_shape = "VM.Standard1.2"
-    server_version="5.5.0"
-    server_node_count = 3
-    syncgateway_version="2.0.0"
-    syncgateway_node_count = 0
-  }
+# ---------------------------------------------------------------------------------------------------------------------
+# Optional variables
+# The defaults here will give you a cluster.  You can also modify these.
+# ---------------------------------------------------------------------------------------------------------------------
+
+variable "region" {
+  default = "us-ashburn-1"
+}
+
+variable "vm_shape" {
+  default = "VM.Standard1.2"
+}
+
+variable "node_count" {
+  default = 3
+}
+
+variable "couchbase_server_version" {
+  default = "5.5.0"
 }
