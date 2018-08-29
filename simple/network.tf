@@ -20,7 +20,7 @@ resource "oci_core_route_table" "route_table" {
   display_name   = "route_table"
 
   route_rules {
-    cidr_block        = "0.0.0.0/0"
+    destination       = "0.0.0.0/0"
     network_entity_id = "${oci_core_internet_gateway.internet_gateway.id}"
   }
 }
