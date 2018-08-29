@@ -42,6 +42,9 @@ You'll need to enter `yes` when prompted.  Once complete, you'll see something l
 
 ![](./images/4%20-%20terraform%20apply.png)
 
+## Connect to the Cluster
+Todo
+
 ## Destroy the Deployment
 When you no longer need the deployment, you can run this command to destroy it:
 
