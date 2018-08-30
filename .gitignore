@@ -1,4 +1,4 @@
 .terraform
-simple/terraform.tfstate
-simple/terraform.tfstate.backup
-simple/.terraform.tfstate.lock.info
+terraform.tfstate
+terraform.tfstate.backup
+.terraform.tfstate.lock.info
