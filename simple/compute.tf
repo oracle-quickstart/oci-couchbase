@@ -12,4 +12,5 @@ resource "oci_core_instance" "couchbase_server" {
     ssh_authorized_keys = "${var.ssh_public_key}"
     user_data           = "${base64encode(file("./scripts/server.sh"))}"
   }
+  count = "${var.node_count}"
 }
