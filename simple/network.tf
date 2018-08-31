@@ -18,3 +18,9 @@ resource "oci_core_subnet" "subnet" {
   vcn_id              = "${oci_core_virtual_network.virtual_network.id}"
   dhcp_options_id     = "${oci_core_virtual_network.virtual_network.default_dhcp_options_id}"
 }
+
+resource "oci_core_internet_gateway" "MongoDB" {
+  compartment_id = "${var.tenancy_ocid}"
+  display_name   = "internet_gateway"
+  vcn_id         = "${oci_core_virtual_network.virtual_network.id}"
+}
