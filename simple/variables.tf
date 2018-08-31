@@ -10,9 +10,8 @@ variable "user_ocid" {}
 variable "fingerprint" {}
 variable "private_key_path" {}
 
-# Keys used to SSH to OCI VMs
+# Key used to SSH to OCI VMs
 variable "ssh_public_key" {}
-variable "ssh_private_key" {}
 
 # ---------------------------------------------------------------------------------------------------------------------
 # Optional variables
