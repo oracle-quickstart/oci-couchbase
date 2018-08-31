@@ -5,7 +5,7 @@ resource "oci_core_instance" "couchbase_server" {
   shape               = "${var.shape}"
   subnet_id           = "${oci_core_subnet.subnet.id}"
   source_details {
-    source_id = "${var.InstanceImageOCID[var.region]}"
+    source_id = "${var.Images[var.region]}"
   	source_type = "image"
   }
   metadata {
