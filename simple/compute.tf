@@ -1,4 +1,4 @@
-resource "oci_core_instance" "couchbase_server" {
+resource "oci_core_instance" "cb" {
   display_name        = "couchbase_server"
   compartment_id      = "${var.tenancy_ocid}"
   availability_domain = "${lookup(data.oci_identity_availability_domains.availability_domains.availability_domains[0],"name")}"
@@ -13,4 +13,14 @@ resource "oci_core_instance" "couchbase_server" {
     user_data           = "${base64encode(file("./scripts/server.sh"))}"
   }
   count = "${var.node_count}"
+}
+
+data "oci_core_vnic_attachments" "vnic_attachments" {
+  compartment_id      = "${var.tenancy_ocid}"
+  availability_domain = "${lookup(data.oci_identity_availability_domains.availability_domains.availability_domains[0],"name")}"
+  instance_id         = "${oci_core_instance.cb.id}"
+}
+
+data "oci_core_vnic" "vnic" {
+  vnic_id = "${lookup(data.oci_core_vnic_attachments.vnic_attachments.vnic_attachments[0],"vnic_id")}"
 }
