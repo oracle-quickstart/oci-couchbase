@@ -6,7 +6,6 @@ resource "oci_core_virtual_network" "virtual_network" {
   cidr_block     = "10.0.0.0/16"
   compartment_id = "${var.tenancy_ocid}"
   display_name   = "virtual_network"
-  dns_label      = "couchbase"
 }
 
 resource "oci_core_subnet" "subnet" {
@@ -34,4 +33,18 @@ resource "oci_core_route_table" "route_table" {
     destination       = "0.0.0.0/0"
     network_entity_id = "${oci_core_internet_gateway.internet_gateway.id}"
   }
+}
+
+resource "oci_core_security_list" "BastionSubnet" {
+  compartment_id = "${var.tenancy_ocid}"
+  display_name   = "security_list"
+  vcn_id         = "${oci_core_virtual_network.virtual_network.id}"
+
+  egress_security_rules = [{
+    destination = "0.0.0.0/0"
+  }]
+
+  ingress_security_rules = [{
+    source = "0.0.0.0/0"
+  }]
 }
