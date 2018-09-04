@@ -1,5 +1,7 @@
+# Important - This doesn't work yet!
+
 # oci-couchbase
-[simple](simple) is a Terraform module that will deploy Couchbase Server on OCI. Instructions on how to use it are below. Best practices are detailed in [this document](bestpractices.md).
+[simple](simple) is a Terraform module that will deploy Couchbase on OCI. Instructions on how to use it are below. Best practices are detailed in [this document](bestpractices.md).
 
 ## Prerequisites
 First off you'll need to do some pre deploy setup.  That's all detailed [here](https://github.com/cloud-partners/oci-prerequisites).
@@ -30,17 +32,29 @@ Now for the main attraction.  Let's make sure the plan looks good:
 
 That gives:
 
-![](./images/2%20-%20terraform%20plan.png)
+![](./images/3%20-%20terraform%20plan.png)
 
 If that's good, we can go ahead and apply the deploy:
 
     terraform apply
 
-That gives:
+You'll need to enter `yes` when prompted.  Once complete, you'll see something like this:
 
-![](./images/2%20-%20terraform%20apply.png)
+![](./images/4%20-%20terraform%20apply.png)
+
+## Connect to the Cluster
+Todo
+
+## SSH to a Node
+These machines are using Oracle Enterprise Linux (OEL).  The default login is opc.  You can SSH into the machine with a command like this:
+
+    ssh -i ~/.ssh/oci opc@<Public IP Address>
 
 ## Destroy the Deployment
 When you no longer need the deployment, you can run this command to destroy it:
 
     terraform destroy
+
+You'll need to enter `yes` when prompted.  Once complete, you'll see something like this:
+
+![](./images/5%20-%20terraform%20destroy.png)
