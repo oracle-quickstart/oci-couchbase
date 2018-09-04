@@ -41,10 +41,12 @@ resource "oci_core_security_list" "BastionSubnet" {
   vcn_id         = "${oci_core_virtual_network.virtual_network.id}"
 
   egress_security_rules = [{
+    protocol    = "6"
     destination = "0.0.0.0/0"
   }]
 
   ingress_security_rules = [{
-    source = "0.0.0.0/0"
+    protocol = "6"
+    source   = "0.0.0.0/0"
   }]
 }
