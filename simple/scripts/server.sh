@@ -20,6 +20,13 @@ wget https://packages.couchbase.com/releases/${version}/couchbase-server-enterpr
 rpm --install couchbase-server-enterprise-${version}-centos6.x86_64.rpm
 
 #######################################################"
+################# Turn Off the Firewall ###############"
+#######################################################"
+echo "Turning off the Firewall..."
+
+service firewalld stop
+
+#######################################################"
 ############ Turn Off Transparent Hugepages ###########"
 #######################################################"
 echo "Turning off transparent hugepages..."
@@ -53,12 +60,13 @@ echo "
 vm.swappiness = 0
 " >> /etc/sysctl.conf
 
-source util.sh
-formatDataDisk
+#######################################################
+############## Configure Couchbase Server #############
+#######################################################
+echo "Configuring Couchbase Server..."
 
-#######################################################
-################# Configure Couchbase #################
-#######################################################
+rallyPublicDNS="couchbase-server.couchbase.couchbase.oraclevcn.com"
+nodeDNS=`hostname`".couchbase.couchbase.oraclevcn.com"
 
 echo "Using the settings:"
 echo rallyDNS \'$rallyPublicDNS\'
