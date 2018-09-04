@@ -1,7 +1,7 @@
 resource "oci_core_instance" "couchbase_server" {
-  availability_domain = "${lookup(data.oci_identity_availability_domains.availability_domains.availability_domains[0],"name")}"
-  compartment_id      = "${var.tenancy_ocid}"
   display_name        = "couchbase_server"
+  compartment_id      = "${var.tenancy_ocid}"
+  availability_domain = "${lookup(data.oci_identity_availability_domains.availability_domains.availability_domains[0],"name")}"
   shape               = "${var.shape}"
   subnet_id           = "${oci_core_subnet.subnet.id}"
   source_details {
