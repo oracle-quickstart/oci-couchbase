@@ -19,21 +19,10 @@ variable "ssh_public_key" {}
 # The defaults here will give you a cluster.  You can also modify these.
 # ---------------------------------------------------------------------------------------------------------------------
 
-variable "region" {
-  default = "us-ashburn-1"
-}
-
-variable "shape" {
-  default = "VM.Standard1.2"
-}
-
-variable "node_count" {
-  default = 3
-}
-
-variable "couchbase_server_version" {
-  default = "5.5.0"
-}
+variable "region" { default = "us-ashburn-1" }
+variable "shape" { default = "VM.Standard1.2" }
+variable "node_count" { default = 3 }
+variable "couchbase_server_version" { default = "5.5.0" }
 
 # ---------------------------------------------------------------------------------------------------------------------
 # Constants
