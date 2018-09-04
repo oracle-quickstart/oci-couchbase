@@ -25,4 +25,4 @@ data "oci_core_vnic" "couchbase_syncgateway_vnic" {
   vnic_id = "${lookup(data.oci_core_vnic_attachments.couchbase_syncgateway_vnic_attachments.vnic_attachments[0],"vnic_id")}"
 }
 
-output "CouchbaseSyncGatewayURL" { value = "${data.oci_core_vnic.couchbase_syncgateway_vnic.public_ip_address}:4985/_admin/" }
+output "CouchbaseSyncGatewayURL" { value = "${data.oci_core_vnic.couchbase_syncgateway_vnic.public_ip_address}:4984" }
