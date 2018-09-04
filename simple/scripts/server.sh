@@ -80,8 +80,8 @@ do
   output=`./couchbase-cli node-init \
     --cluster=$nodeDNS \
     --node-init-hostname=$nodeDNS \
-    --node-init-data-path=/mnt/datadisk/data \
-    --node-init-index-path=/mnt/datadisk/index \
+#    --node-init-data-path=/mnt/datadisk/data \
+#    --node-init-index-path=/mnt/datadisk/index \
     --user=$adminUsername \
     --pass=$adminPassword`
   echo node-init output \'$output\'
