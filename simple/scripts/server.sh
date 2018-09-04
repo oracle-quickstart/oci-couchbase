@@ -12,19 +12,18 @@ echo adminPassword \'$adminPassword\'
 echo version \'$version\'
 
 #######################################################"
+################# Turn Off the Firewall ###############"
+#######################################################"
+echo "Turning off the Firewall..."
+service firewalld stop
+
+#######################################################"
 ############## Install Couchbase Server ###############"
 #######################################################"
 echo "Installing Couchbase Server..."
 
 wget https://packages.couchbase.com/releases/${version}/couchbase-server-enterprise-${version}-centos6.x86_64.rpm
 rpm --install couchbase-server-enterprise-${version}-centos6.x86_64.rpm
-
-#######################################################"
-################# Turn Off the Firewall ###############"
-#######################################################"
-echo "Turning off the Firewall..."
-
-service firewalld stop
 
 #######################################################"
 ############ Turn Off Transparent Hugepages ###########"

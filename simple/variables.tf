@@ -9,6 +9,7 @@ variable "tenancy_ocid" {}
 variable "user_ocid" {}
 variable "fingerprint" {}
 variable "private_key_path" {}
+variable "region" { default = "eu-frankfurt-1" }
 
 # Key used to SSH to OCI VMs
 variable "ssh_public_key" {}
@@ -18,10 +19,23 @@ variable "ssh_public_key" {}
 # The defaults here will give you a cluster.  You can also modify these.
 # ---------------------------------------------------------------------------------------------------------------------
 
-variable "region" { default = "us-ashburn-1" }
-variable "shape" { default = "VM.Standard1.4" }
-variable "node_count" { default = 3 }
-variable "couchbase_server_version" { default = "5.5.0" }
+variable "couchbase_server" {
+  type = "map"
+  default = {
+    shape = "VM.Standard1.4"
+    node_count = 3
+    version = "5.5.0"
+  }
+}
+
+variable "couchbase_syncgateway" {
+  type = "map"
+  default = {
+    shape = "VM.Standard1.2"
+    node_count = 2
+    version = "2.0.0"
+  }
+}
 
 # ---------------------------------------------------------------------------------------------------------------------
 # Constants
@@ -30,7 +44,7 @@ variable "couchbase_server_version" { default = "5.5.0" }
 
 // https://docs.cloud.oracle.com/iaas/images/image/cf34ce27-e82d-4c1a-93e6-e55103f90164/
 // Oracle-Linux-7.5-2018.08.14-0
-variable "Images" {
+variable "images" {
   type = "map"
   default = {
     eu-frankfurt-1 = "ocid1.image.oc1.eu-frankfurt-1.aaaaaaaakzrywmh7kwt7ugj5xqi5r4a7xoxsrxtc7nlsdyhmhqyp7ntobjwq"
