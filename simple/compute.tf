@@ -1,5 +1,5 @@
-resource "oci_core_instance" "cb" {
-  display_name        = "couchbase_server"
+resource "oci_core_instance" "couchbase_server" {
+  display_name        = "cb"
   compartment_id      = "${var.tenancy_ocid}"
   availability_domain = "${lookup(data.oci_identity_availability_domains.availability_domains.availability_domains[0],"name")}"
   shape               = "${var.shape}"
@@ -18,7 +18,7 @@ resource "oci_core_instance" "cb" {
 data "oci_core_vnic_attachments" "vnic_attachments" {
   compartment_id      = "${var.tenancy_ocid}"
   availability_domain = "${lookup(data.oci_identity_availability_domains.availability_domains.availability_domains[0],"name")}"
-  instance_id         = "${oci_core_instance.cb.id}"
+  instance_id         = "${oci_core_instance.couchbase_server.id}"
 }
 
 data "oci_core_vnic" "vnic" {
