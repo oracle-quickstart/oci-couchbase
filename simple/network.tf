@@ -17,6 +17,7 @@ resource "oci_core_subnet" "subnet" {
   vcn_id              = "${oci_core_virtual_network.virtual_network.id}"
   dhcp_options_id     = "${oci_core_virtual_network.virtual_network.default_dhcp_options_id}"
   dns_label           = "couchbase"
+  security_list_ids   = ["${oci_core_security_list.security_list.id}"]
 }
 
 resource "oci_core_internet_gateway" "internet_gateway" {
@@ -36,7 +37,7 @@ resource "oci_core_route_table" "route_table" {
   }
 }
 
-resource "oci_core_security_list" "subnet" {
+resource "oci_core_security_list" "security_list" {
   compartment_id = "${var.tenancy_ocid}"
   display_name   = "security_list"
   vcn_id         = "${oci_core_virtual_network.virtual_network.id}"
