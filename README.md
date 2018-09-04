@@ -45,6 +45,11 @@ You'll need to enter `yes` when prompted.  Once complete, you'll see something l
 ## Connect to the Cluster
 Todo
 
+## SSH to a Node
+These machines are using Oracle Enterprise Linux (OEL).  The default login is opc.  You can SSH into the machine with a command like this:
+
+    ssh -i ./oci opc@<Public IP Address>
+
 ## Destroy the Deployment
 When you no longer need the deployment, you can run this command to destroy it:
 
