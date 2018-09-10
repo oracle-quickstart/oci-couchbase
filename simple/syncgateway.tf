@@ -10,7 +10,7 @@ resource "oci_core_instance" "couchbase_syncgateway" {
   }
   metadata {
     ssh_authorized_keys = "${var.ssh_public_key}"
-    user_data           = "${base64encode(file("./scripts/syncgateway.sh"))}"
+    user_data           = "${base64encode(file("../scripts/syncgateway.sh"))}"
   }
   count = "${var.couchbase_syncgateway["node_count"]}"
 }
