@@ -1,5 +1,3 @@
-# Important - This doesn't work yet!
-
 # oci-couchbase
 [simple](simple) is a Terraform module that will deploy Couchbase on OCI. Instructions on how to use it are below. Best practices are detailed in [this document](bestpractices.md).
 
@@ -15,7 +13,7 @@ Now, you'll want a local copy of this repo.  You can make that with the commands
 
 That should give you this:
 
-![](./images/1%20-%20git%20clone.png)
+![](./images/01%20-%20git%20clone.png)
 
 We now need to initialize the directory with the module in it.  This makes the module aware of the OCI provider.  You can do this by running:
 
@@ -23,7 +21,7 @@ We now need to initialize the directory with the module in it.  This makes the m
 
 This gives the following output:
 
-![](./images/2%20-%20terraform%20init.png)
+![](./images/02%20-%20terraform%20init.png)
 
 ## Deploy
 Now for the main attraction.  Let's make sure the plan looks good:
@@ -32,23 +30,46 @@ Now for the main attraction.  Let's make sure the plan looks good:
 
 That gives:
 
-![](./images/3%20-%20terraform%20plan.png)
+![](./images/03%20-%20terraform%20plan.png)
 
 If that's good, we can go ahead and apply the deploy:
 
     terraform apply
 
-You'll need to enter `yes` when prompted.  Once complete, you'll see something like this:
+You'll need to enter `yes` when prompted.  The apply should take about five minutes to run.  Once complete, you'll see something like this:
 
-![](./images/4%20-%20terraform%20apply.png)
+![](./images/04%20-%20terraform%20apply.png)
+
+When the apply is complete, the infrastructure will be deployed, but cloud-init scripts will still be running.  Those will wrap up asynchronously.  So, it'll be a few more minutes before your cluster is accessible.  Now is a good time to get a coffee.
 
 ## Connect to the Cluster
-Todo
+When the `terraform apply` completed, it printed out two values.  One of those is the URL to access Couchbase Server, the other one is for Couchbase Sync Gateway.  First, let's try accessing Server on port 8091 of the public IP.  You should see this:
+
+![](./images/05%20-%20server%20login.png)
+
+Now enter in the username and password specified in `variables.tf`.  You should now have a view of your cluster and the services running.
+
+![](./images/06%20-%20server.png)
+
+Couchbase runs the admin interface on every node.  So, we could login to any node in the cluster to see this view.
+
+Next, let's access to Sync Gateway on port 4984 of its public IP.  You should see:
+
+![](./images/07%20-%20sync%20gateway.png)
 
 ## SSH to a Node
 These machines are using Oracle Enterprise Linux (OEL).  The default login is opc.  You can SSH into the machine with a command like this:
 
     ssh -i ~/.ssh/oci opc@<Public IP Address>
+
+Couchbase is installed under `/opt/couchbase/bin`.  You can debug deployments by investigating the cloud-init log file `/var/log/messages`.  You'll need to `sudo su` to be able to read it.
+
+![](./images/08%20-%20ssh.png)
+
+## View the Cluster in the Console
+You can also login to the web console [here](https://console.us-phoenix-1.oraclecloud.com/a/compute/instances) to view the IaaS that is running the cluster.
+
+![](./images/09%20-%20console.png)
 
 ## Destroy the Deployment
 When you no longer need the deployment, you can run this command to destroy it:
@@ -57,4 +78,4 @@ When you no longer need the deployment, you can run this command to destroy it:
 
 You'll need to enter `yes` when prompted.  Once complete, you'll see something like this:
 
-![](./images/5%20-%20terraform%20destroy.png)
+![](./images/10%20-%20terraform%20destroy.png)
