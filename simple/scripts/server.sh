@@ -67,10 +67,12 @@ echo "Configuring Couchbase Server..."
 rallyDNS="couchbase-server.couchbase.couchbase.oraclevcn.com"
 nodeDNS=$(hostname)
 nodeDNS+=".couchbase.couchbase.oraclevcn.com"
+services="data,index,query,fts,analytics,eventing"
 
 echo "Using the settings:"
 echo rallyDNS \'$rallyDNS\'
 echo nodeDNS \'$nodeDNS\'
+echo services \'$services\'
 
 cd /opt/couchbase/bin/
 
@@ -100,7 +102,7 @@ then
     --cluster-password=$adminPassword \
     --cluster-ramsize=$dataRAM \
     --cluster-index-ramsize=$indexRAM \
-    --services=${services}
+    --services=$services
 else
   echo "Running couchbase-cli server-add"
   output=""
@@ -113,7 +115,7 @@ else
       --server-add=$nodeDNS \
       --server-add-username=$adminUsername \
       --server-add-password=$adminPassword \
-      --services=data,index,query,fts,analytics,eventing`
+      --services=$services`
     echo server-add output \'$output\'
     sleep 10
   done
