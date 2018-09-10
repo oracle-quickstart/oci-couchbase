@@ -12,6 +12,7 @@ echo version \'$version\'
 #######################################################"
 echo "Turning off the Firewall..."
 service firewalld stop
+chkconfig firewalld off
 
 #######################################################"
 ########### Install Couchbase Sync Gateway ############"
