@@ -64,13 +64,13 @@ vm.swappiness = 0
 #######################################################
 echo "Configuring Couchbase Server..."
 
-rallyPublicDNS="couchbase-server.couchbase.couchbase.oraclevcn.com"
+rallyDNS="couchbase-server.couchbase.couchbase.oraclevcn.com"
 nodeDNS=$(hostname)
 nodeDNS+=".couchbase.couchbase.oraclevcn.com"
 
 echo "Using the settings:"
-echo rallyDNS \'$rallyPublicDNS\'
-echo nodeDNS \'$nodePublicDNS\'
+echo rallyDNS \'$rallyDNS\'
+echo nodeDNS \'$nodeDNS\'
 
 cd /opt/couchbase/bin/
 
