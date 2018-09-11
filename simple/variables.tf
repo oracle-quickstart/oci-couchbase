@@ -25,8 +25,8 @@ variable "couchbase_server" {
     shape = "VM.Standard1.4"
     node_count = 3
     version = "5.5.0"
-    adminUsername = "admin"
-    adminPassword = "admin"
+    adminUsername = "couchbase"
+    adminPassword = "couchbase"
   }
 }
 
