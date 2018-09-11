@@ -1,5 +1,3 @@
-#!/bin/sh
-
 echo "Running server.sh"
 
 echo "Got the parameters:"

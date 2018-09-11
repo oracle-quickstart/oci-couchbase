@@ -1,5 +1,3 @@
-#!/bin/sh
-
 echo "Running syncGateway.sh"
 
 echo "Got the parameters:"
