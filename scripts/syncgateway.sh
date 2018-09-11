@@ -2,8 +2,6 @@
 
 echo "Running syncGateway.sh"
 
-version=2.0.0
-
 echo "Got the parameters:"
 echo version \'$version\'
 

@@ -2,10 +2,6 @@
 
 echo "Running server.sh"
 
-adminUsername="couchbase"
-adminPassword="couchbase"
-version="5.5.0"
-
 echo "Got the parameters:"
 echo adminUsername \'$adminUsername\'
 echo adminPassword \'$adminPassword\'

@@ -12,9 +12,9 @@ resource "oci_core_instance" "couchbase_server" {
     ssh_authorized_keys = "${var.ssh_public_key}"
     user_data           = "${base64encode(format("%s\n%s%s\n%s%s\n%s%s\n",
       file("../scripts/server.sh"),
-      "version=", ${var.couchbase_server["version"]},
-      "adminUsername=", ${var.couchbase_server["adminUsername"]},
-      "adminPassword=", ${var.couchbase_server["adminPassword"]},
+      "version=", "${var.couchbase_server["version"]}",
+      "adminUsername=", "${var.couchbase_server["adminUsername"]}",
+      "adminPassword=", "${var.couchbase_server["adminPassword"]}"
     ))}"
   }
   count = "${var.couchbase_server["node_count"]}"
