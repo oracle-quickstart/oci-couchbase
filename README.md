@@ -47,7 +47,7 @@ When the `terraform apply` completed, it printed out two values.  One of those i
 
 ![](./images/05%20-%20server%20login.png)
 
-Now enter in the username and password you specified in [variables.tf](variables.tf).  You should now have a view of your cluster and the services running.
+Now enter in the username and password you specified in [./simple/variables.tf](variables.tf).  You should now have a view of your cluster and the services running.
 
 ![](./images/06%20-%20server.png)
 
