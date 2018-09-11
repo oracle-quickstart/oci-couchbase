@@ -26,7 +26,7 @@ variable "couchbase_server" {
     node_count = 3
     version = "5.5.0"
     adminUsername = "couchbase"
-    adminPassword = "couchbase"
+    adminPassword = "foo123!"
   }
 }
 
