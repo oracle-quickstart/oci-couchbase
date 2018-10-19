@@ -1,6 +1,6 @@
 resource "oci_core_instance" "couchbase_syncgateway" {
   display_name        = "couchbase_syncgateway"
-  compartment_id      = "${var.tenancy_ocid}"
+  compartment_id      = "${var.compartment_id}"
   availability_domain = "${lookup(data.oci_identity_availability_domains.availability_domains.availability_domains[0],"name")}"
   shape               = "${var.couchbase_syncgateway["shape"]}"
   subnet_id           = "${oci_core_subnet.subnet.id}"
@@ -20,7 +20,7 @@ resource "oci_core_instance" "couchbase_syncgateway" {
 }
 
 data "oci_core_vnic_attachments" "couchbase_syncgateway_vnic_attachments" {
-  compartment_id      = "${var.tenancy_ocid}"
+  compartment_id      = "${var.compartment_id}"
   availability_domain = "${lookup(data.oci_identity_availability_domains.availability_domains.availability_domains[0],"name")}"
   instance_id         = "${oci_core_instance.couchbase_syncgateway.*.id[0]}"
 }

@@ -4,6 +4,8 @@
 # Instructions on that are here: https://github.com/cloud-partners/oci-prerequisites
 # ---------------------------------------------------------------------------------------------------------------------
 
+variable "compartment_ocid" {}
+
 # Required by the OCI Provider
 variable "tenancy_ocid" {}
 variable "user_ocid" {}
@@ -13,10 +15,6 @@ variable "region" {}
 
 # Key used to SSH to OCI VMs
 variable "ssh_public_key" {}
-
-variable "compartment_ocid" {
-  default = "${var.tenancy_ocid}"
-}
 
 # ---------------------------------------------------------------------------------------------------------------------
 # Optional variables
