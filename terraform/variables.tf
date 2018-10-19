@@ -24,7 +24,7 @@ variable "ssh_public_key" {}
 variable "couchbase_server" {
   type = "map"
   default = {
-    shape = "VM.Standard1.4"
+    shape = "VM.Standard2.4"
     node_count = 3
     version = "5.5.0"
     adminUsername = "couchbase"
@@ -35,7 +35,7 @@ variable "couchbase_server" {
 variable "couchbase_syncgateway" {
   type = "map"
   default = {
-    shape = "VM.Standard1.2"
+    shape = "VM.Standard2.2"
     node_count = 2
     version = "2.0.0"
   }
