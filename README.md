@@ -1,5 +1,5 @@
 # oci-couchbase
-[simple](simple) is a Terraform module that will deploy Couchbase on OCI. Instructions on how to use it are below.
+[terraform](terraform) is a Terraform module that will deploy Couchbase on OCI. Instructions on how to use it are below.
 
 ## Prerequisites
 First off you'll need to do some pre deploy setup.  That's all detailed [here](https://github.com/cloud-partners/oci-prerequisites).
