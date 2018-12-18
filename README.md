@@ -1,5 +1,6 @@
 # oci-couchbase
-[terraform](terraform) is a Terraform module that will deploy Couchbase on OCI. Instructions on how to use it are below.
+* [simple](simple) is a Terraform module that will deploy Couchbase on OCI. Instructions on how to use it are below.  
+* [generator](generator) is a Python script that will create a Terraform module.  It can be used to generate more complex configurations that take advantage of MDS.
 
 ## Prerequisites
 First off you'll need to do some pre deploy setup.  That's all detailed [here](https://github.com/cloud-partners/oci-prerequisites).
