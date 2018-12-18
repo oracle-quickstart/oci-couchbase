@@ -1,0 +1,16 @@
+serverVersion: 5.5.1
+syncGatewayVersion: 2.0.0
+cluster:
+  - group: group1
+    nodeCount: 4
+    nodeType: BM.Standard.E2.64
+    dataDiskSize: 1000
+    services:
+      - data
+  - group: group2
+    nodeCount: 2
+    nodeType: BM.Standard.E2.64
+    dataDiskSize: 1000
+    services:
+      - query
+      - index

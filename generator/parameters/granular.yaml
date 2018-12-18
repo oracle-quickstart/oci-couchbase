@@ -3,42 +3,42 @@ syncGatewayVersion: 2.0.0
 cluster:
   - group: data
     nodeCount: 2
-    nodeType: m4.4xlarge
+    nodeType: VM.Standard2.4
     dataDiskSize: 100
     services:
       - data
   - group: query
     nodeCount: 2
-    nodeType: m4.4xlarge
+    nodeType: VM.Standard2.4
     dataDiskSize: 100
     services:
       - query
   - group: index
     nodeCount: 2
-    nodeType: m4.4xlarge
+    nodeType: VM.Standard2.4
     dataDiskSize: 100
     services:
       - index
   - group: fts
     nodeCount: 2
-    nodeType: m4.4xlarge
+    nodeType: VM.Standard2.4
     dataDiskSize: 100
     services:
       - fts
   - group: analytics
     nodeCount: 2
-    nodeType: m4.4xlarge
+    nodeType: VM.Standard2.4
     dataDiskSize: 100
     services:
       - analytics
   - group: eventing
     nodeCount: 2
-    nodeType: m4.4xlarge
+    nodeType: VM.Standard2.4
     dataDiskSize: 100
     services:
       - eventing
   - group: syncgateway
     nodeCount: 2
-    nodeType: m4.4xlarge
+    nodeType: VM.Standard2.4
     services:
       - syncGateway

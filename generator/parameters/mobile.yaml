@@ -3,7 +3,7 @@ syncGatewayVersion: 2.0.0
 cluster:
   - group: server
     nodeCount: 3
-    nodeType: m4.4xlarge
+    nodeType: VM.Standard2.4
     dataDiskSize: 100
     services:
       - data
@@ -14,6 +14,6 @@ cluster:
       - eventing
   - group: syncgateway
     nodeCount: 2
-    nodeType: m4.4xlarge
+    nodeType: VM.Standard2.4
     services:
       - syncGateway
