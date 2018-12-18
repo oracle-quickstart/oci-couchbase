@@ -3,5 +3,7 @@ terraform.tfstate
 terraform.tfstate.backup
 .terraform.tfstate.lock.info
 
-# generated terraform files
-generator/*.tf
+# copied and generated terraform files
+generator/network.tf
+generator/provider.tf
+generator/generated.tf

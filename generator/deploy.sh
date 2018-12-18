@@ -1,5 +1,7 @@
 #! /usr/bin/sh
 
+PARAMETERS_FILE=$1
+
 cp ../simple/network.tf ./
 cp ../simple/provider.tf ./
 

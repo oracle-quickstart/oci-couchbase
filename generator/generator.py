@@ -13,49 +13,18 @@ def main():
     syncGatewayVersion = parameters['syncGatewayVersion']
     cluster = parameters['cluster']
 
-    module = ''
-    module = module + generateVariables()
+    module = generateCluster(serverVersion, syncGatewayVersion, cluster)
 
     file = open('generated.tf', 'w')
     file.write(module)
     file.close()
 
-def generateVariables():
-    return '\
-variable "compartment_ocid" {}\
-\
-# Required by the OCI Provider\
-variable "tenancy_ocid" {}\
-variable "user_ocid" {}\
-variable "fingerprint" {}\
-variable "private_key_path" {}\
-variable "region" {}\
-\
-# Key used to SSH to OCI VMs\
-variable "ssh_public_key" {}\
-\
-variable adminUsername { default = "couchbase" }\
-variable adminPassword { default = "foo123!" }\
-\
-// https://docs.cloud.oracle.com/iaas/images/image/cf34ce27-e82d-4c1a-93e6-e55103f90164/\
-// Oracle-Linux-7.5-2018.08.14-0\
-variable "images" {\
-  type = "map"\
-  default = {\
-    eu-frankfurt-1 = "ocid1.image.oc1.eu-frankfurt-1.aaaaaaaakzrywmh7kwt7ugj5xqi5r4a7xoxsrxtc7nlsdyhmhqyp7ntobjwq"\
-    us-ashburn-1 = "ocid1.image.oc1.iad.aaaaaaaa2tq67tvbeavcmioghquci6p3pvqwbneq3vfy7fe7m7geiga4cnxa"\
-    us-phoenix-1 = "ocid1.image.oc1.phx.aaaaaaaasez4lk2lucxcm52nslj5nhkvbvjtfies4yopwoy4b3vysg5iwjra"\
-    uk-london-1  = "ocid1.image.oc1.uk-london-1.aaaaaaaalsdgd47nl5tgb55sihdpqmqu2sbvvccjs6tmbkr4nx2pq5gkn63a"\
-  }\
-}\
-'
-
 def generateCluster(serverVersion, syncGatewayVersion, cluster):
     module = ''
     rallyGroup=cluster[0]['group']
     for group in cluster:
-        module = modeule + generateGroup(serverVersion, syncGatewayVersion, group, rallyGroup)
-    return resources
+        module = module + generateGroup(serverVersion, syncGatewayVersion, group, rallyGroup)
+    return module
 
 def generateGroup(serverVersion, syncGatewayVersion, group, rallyGroup):
     if 'syncGateway' in group['services']:
@@ -68,27 +37,27 @@ def generateSyncGateway(syncGatewayVersion, group, rallyGroup):
     nodeCount = group['nodeCount']
     nodeType = group['nodeType']
 
-    module = '
-resource "oci_core_instance" "' + groupName + '" {\
-  display_name        = "' + groupName + '"\
-  compartment_id      = "${var.compartment_ocid}"\
-  availability_domain = "${lookup(data.oci_identity_availability_domains.availability_domains.availability_domains[0],"name")}"\
-  shape               = "${var.couchbase_server["' + nodeType +'"]}"\
-  subnet_id           = "${oci_core_subnet.subnet.id}"\
-  source_details {\
-    source_id = "${var.images[var.region]}"\
-  	source_type = "image"\
-  }\
-  metadata {\
-    ssh_authorized_keys = "${var.ssh_public_key}"\
-    user_data           = "${base64encode(format("%s\n%s\n%s\n%s\n%s\n",\
-      "#!/usr/bin/env bash",\
-      "version=' + syncGatewayVersion + '",\
-      file("../scripts/syncgateway.sh")\
-    ))}"\
-  }\
-  count = "${var.couchbase_server["' + nodeCount +'"]}"\
-}\
+    module = '\n\
+resource "oci_core_instance" "' + groupName + '" {\n\
+  display_name        = "' + groupName + '"\n\
+  compartment_id      = "${var.compartment_ocid}"\n\
+  availability_domain = "${lookup(data.oci_identity_availability_domains.availability_domains.availability_domains[0],"name")}"\n\
+  shape               = "' + nodeType +'"\n\
+  subnet_id           = "${oci_core_subnet.subnet.id}"\n\
+  source_details {\n\
+    source_id = "${var.images[var.region]}"\n\
+  	source_type = "image"\n\
+  }\n\
+  metadata {\n\
+    ssh_authorized_keys = "${var.ssh_public_key}"\n\
+    user_data           = "${base64encode(format("%s\\n%s\\n%s\\n%s\\n%s\\n",\n\
+      "#!/usr/bin/env bash",\n\
+      "version=' + syncGatewayVersion + '",\n\
+      file("../scripts/syncgateway.sh")\n\
+    ))}"\n\
+  }\n\
+  count = "' + str(nodeCount) +'"\n\
+}\n\
 '
     return module
 
@@ -104,29 +73,29 @@ def generateServer(serverVersion, group, rallyAutoScalingGroup):
         servicesParameter += service + ','
     servicesParameter=servicesParameter[:-1]
 
-    module = '
-resource "oci_core_instance" "' + groupName + '" {\
-  display_name        = "' + groupName + '"\
-  compartment_id      = "${var.compartment_ocid}"\
-  availability_domain = "${lookup(data.oci_identity_availability_domains.availability_domains.availability_domains[0],"name")}"\
-  shape               = "${var.couchbase_server["' + nodeType +'"]}"\
-  subnet_id           = "${oci_core_subnet.subnet.id}"\
-  source_details {\
-    source_id = "${var.images[var.region]}"\
-  	source_type = "image"\
-  }\
-  metadata {\
-    ssh_authorized_keys = "${var.ssh_public_key}"\
-    user_data           = "${base64encode(format("%s\n%s\n%s\n%s\n%s\n",\
-      "#!/usr/bin/env bash",\
-      "version=' + serverVersion + '",\
-      "adminUsername=${var.adminUsername}",\
-      "adminPassword=${var.adminPassword}",\
-      file("../scripts/server.sh")\
-    ))}"\
-  }\
-  count = "${var.couchbase_server["' + nodeCount +'"]}"\
-}\
+    module = '\
+resource "oci_core_instance" "' + groupName + '" {\n\
+  display_name        = "' + groupName + '"\n\
+  compartment_id      = "${var.compartment_ocid}"\n\
+  availability_domain = "${lookup(data.oci_identity_availability_domains.availability_domains.availability_domains[0],"name")}"\n\
+  shape               = "' + nodeType +'"\n\
+  subnet_id           = "${oci_core_subnet.subnet.id}"\n\
+  source_details {\n\
+    source_id = "${var.images[var.region]}"\n\
+  	source_type = "image"\n\
+  }\n\
+  metadata {\n\
+    ssh_authorized_keys = "${var.ssh_public_key}"\n\
+    user_data           = "${base64encode(format("%s\\n%s\\n%s\\n%s\\n%s\\n",\n\
+      "#!/usr/bin/env bash",\n\
+      "version=' + serverVersion + '",\n\
+      "adminUsername=${var.adminUsername}",\n\
+      "adminPassword=${var.adminPassword}",\n\
+      file("../scripts/server.sh")\n\
+    ))}"\n\
+  }\n\
+  count = "' + str(nodeCount) +'"\n\
+}\n\
 '
     return module
 
