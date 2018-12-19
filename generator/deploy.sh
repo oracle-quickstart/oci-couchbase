@@ -1,4 +1,4 @@
-#! /usr/bin/sh
+#!/bin/sh
 
 PARAMETERS_FILE=$1
 

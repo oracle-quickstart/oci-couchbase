@@ -54,14 +54,17 @@ echo "
 vm.swappiness = 0
 " >> /etc/sysctl.conf
 
+#source util.sh
+#formatDataDisk
+
 #######################################################
 ############## Configure Couchbase Server #############
 #######################################################
 echo "Configuring Couchbase Server..."
 
-rallyDNS="couchbase-server.couchbase.couchbase.oraclevcn.com"
-nodeDNS=$(hostname)
-nodeDNS+=".couchbase.couchbase.oraclevcn.com"
+rallyDNS="group1.couchbase.couchbase.oraclevcn.com"
+nodeDNS=$(hostname).couchbase.couchbase.oraclevcn.com
+#nodeDNS+=".couchbase.couchbase.oraclevcn.com"
 services="data,index,query,fts,analytics,eventing"
 
 echo "Using the settings:"
