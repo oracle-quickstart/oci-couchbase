@@ -4,6 +4,7 @@ echo "Got the parameters:"
 echo adminUsername \'$adminUsername\'
 echo adminPassword \'$adminPassword\'
 echo version \'$version\'
+echo services \'$services\'
 
 #######################################################"
 ################# Turn Off the Firewall ###############"
@@ -62,7 +63,7 @@ echo "Configuring Couchbase Server..."
 rallyDNS="group1.couchbase.couchbase.oraclevcn.com"
 nodeDNS=$(hostname).couchbase.couchbase.oraclevcn.com
 #nodeDNS+=".couchbase.couchbase.oraclevcn.com"
-services="data,index,query,fts,analytics,eventing"
+#services="data,index,query,fts,analytics,eventing"
 
 echo "Using the settings:"
 echo rallyDNS \'$rallyDNS\'

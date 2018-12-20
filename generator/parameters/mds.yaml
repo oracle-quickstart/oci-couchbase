@@ -2,7 +2,7 @@ serverVersion: 5.5.0
 syncGatewayVersion: 2.0.0
 cluster:
   - group: group1
-    nodeCount: 2
+    nodeCount: 4
     nodeType: VM.Standard2.4
     dataDiskSize: 100
     services:
@@ -14,9 +14,8 @@ cluster:
     services:
       - query
       - index
-      - fts
   - group: group3
-    nodeCount: 2
+    nodeCount: 0
     nodeType: VM.Standard2.4
     dataDiskSize: 100
     services:

@@ -13,6 +13,9 @@ variable "ssh_public_key" {}
 variable "availability_domain" {
   default = "3"
 }
+variable "block_size" {
+  default = "1000"
+}
 
 variable adminUsername { default = "couchbase" }
 variable adminPassword { default = "foo123!" }

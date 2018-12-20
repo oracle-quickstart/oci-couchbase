@@ -3,6 +3,7 @@ resource "oci_core_volume" "group1Block" {
   availability_domain = "${lookup(data.oci_identity_availability_domains.availability_domains.availability_domains[0],"name")}"
   compartment_id      = "${var.compartment_ocid}"
   display_name        = "group1Block${count.index}"
+  size_in_gbs         = "${var.block_size}"
 }
 
 resource "oci_core_volume_attachment" "group1" {
