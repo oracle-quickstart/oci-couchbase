@@ -54,9 +54,6 @@ echo "
 vm.swappiness = 0
 " >> /etc/sysctl.conf
 
-#source util.sh
-#formatDataDisk
-
 #######################################################
 ############## Configure Couchbase Server #############
 #######################################################
