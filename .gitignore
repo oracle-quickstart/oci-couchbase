@@ -2,6 +2,7 @@
 terraform.tfstate
 terraform.tfstate.backup
 .terraform.tfstate.lock.info
+*.tfvars
 
 # copied and generated terraform files
 generator/network.tf

@@ -51,7 +51,7 @@ resource "oci_core_instance" "' + groupName + '" {\n\
   metadata {\n\
     ssh_authorized_keys = "${var.ssh_public_key}"\n\
     user_data           = "${base64encode(format("%s\\n%s\\n%s\\n%s\\n%s\\n",\n\
-      "#!/usr/bin/env bash",\n\
+      "#!/bin/bash",\n\
       "version=' + syncGatewayVersion + '",\n\
       file("../scripts/syncgateway.sh")\n\
     ))}"\n\
@@ -86,11 +86,12 @@ resource "oci_core_instance" "' + groupName + '" {\n\
   }\n\
   metadata {\n\
     ssh_authorized_keys = "${var.ssh_public_key}"\n\
-    user_data           = "${base64encode(format("%s\\n%s\\n%s\\n%s\\n%s\\n",\n\
-      "#!/usr/bin/env bash",\n\
+    user_data           = "${base64encode(format("%s\\n%s\\n%s\\n%s\\n%s\\n%s\\n",\n\
+      "#!/bin/bash",\n\
       "version=' + serverVersion + '",\n\
       "adminUsername=${var.adminUsername}",\n\
       "adminPassword=${var.adminPassword}",\n\
+      "services=' + servicesParameter + '",\n\
       file("../scripts/server.sh")\n\
     ))}"\n\
   }\n\
