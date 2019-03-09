@@ -4,10 +4,9 @@
 # Instructions on that are here: https://github.com/cloud-partners/oci-prerequisites
 # ---------------------------------------------------------------------------------------------------------------------
 
-variable "compartment_ocid" {}
-
 # Required by the OCI Provider
 variable "tenancy_ocid" {}
+variable "compartment_ocid" {}
 variable "user_ocid" {}
 variable "fingerprint" {}
 variable "private_key_path" {}
