@@ -5,7 +5,7 @@ These are Terraform modules that deploy Couchbase Enterprise on Oracle Cloud Inf
 * [generator](generator) is a Python script that will create a Terraform module.  It can be used to generate more complex configurations that take advantage of MDS.
 
 ## Prerequisites
-First off you'll need to do some pre deploy setup.  That's all detailed [here](https://github.com/cloud-partners/oci-prerequisites).
+First off you'll need to do some pre deploy setup.  That's all detailed [here](https://github.com/oracle/oci-quickstart-prerequisites).
 
 ## Clone the Module
 Now, you'll want a local copy of this repo.  You can make that with the commands:
