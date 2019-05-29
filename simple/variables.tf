@@ -6,6 +6,7 @@
 
 # Required by the OCI Provider
 variable "tenancy_ocid" {}
+
 variable "compartment_ocid" {}
 variable "user_ocid" {}
 variable "fingerprint" {}
@@ -22,10 +23,11 @@ variable "ssh_public_key" {}
 
 variable "couchbase_server" {
   type = "map"
+
   default = {
-    shape = "VM.Standard2.4"
-    node_count = 3
-    version = "5.5.3"
+    shape         = "VM.Standard2.4"
+    node_count    = 6
+    version       = "5.5.3"
     adminUsername = "couchbase"
     adminPassword = "foo123!"
   }
@@ -33,11 +35,16 @@ variable "couchbase_server" {
 
 variable "couchbase_syncgateway" {
   type = "map"
+
   default = {
-    shape = "VM.Standard2.2"
-    node_count = 2
-    version = "2.0.0"
+    shape      = "VM.Standard2.2"
+    node_count = 4
+    version    = "2.0.0"
   }
+}
+
+locals {
+  fault_domains_per_ad = 3
 }
 
 # ---------------------------------------------------------------------------------------------------------------------

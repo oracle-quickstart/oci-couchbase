@@ -60,9 +60,8 @@ vm.swappiness = 0
 #######################################################
 echo "Configuring Couchbase Server..."
 
-rallyDNS="couchbase-server.couchbase.couchbase.oraclevcn.com"
+rallyDNS="couchbase-server0.couchbase.couchbase.oraclevcn.com"
 nodeDNS=$(hostname).couchbase.couchbase.oraclevcn.com
-#nodeDNS+=".couchbase.couchbase.oraclevcn.com"
 services="data,index,query,fts,analytics,eventing"
 
 echo "Using the settings:"
