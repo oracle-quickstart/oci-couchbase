@@ -32,19 +32,3 @@ resource "oci_core_route_table" "route_table" {
     network_entity_id = "${oci_core_internet_gateway.internet_gateway.id}"
   }
 }
-
-resource "oci_core_security_list" "security_list" {
-  display_name   = "security_list"
-  compartment_id = "${var.compartment_ocid}"
-  vcn_id         = "${oci_core_virtual_network.virtual_network.id}"
-
-  egress_security_rules = [{
-    protocol    = "All"
-    destination = "0.0.0.0/0"
-  }]
-
-  ingress_security_rules = [{
-    protocol = "All"
-    source   = "0.0.0.0/0"
-  }]
-}
