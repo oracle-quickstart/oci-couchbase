@@ -27,7 +27,7 @@ variable "couchbase_server" {
   default = {
     shape         = "VM.Standard2.4"
     node_count    = 6
-    version       = "5.5.3"
+    version       = "6.0.2"
     adminUsername = "couchbase"
     adminPassword = "foo123!"
   }
@@ -39,7 +39,7 @@ variable "couchbase_syncgateway" {
   default = {
     shape      = "VM.Standard2.2"
     node_count = 4
-    version    = "2.0.0"
+    version    = "2.5.0"
   }
 }
 
