@@ -8,3 +8,5 @@ terraform.tfstate.backup
 generator/network.tf
 generator/provider.tf
 generator/generated.tf
+
+*scratch*
