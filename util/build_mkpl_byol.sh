@@ -26,8 +26,8 @@ rm ./tmp_package/provider.tf
 echo "Removing variables.tf...."
 rm ./tmp_package/variables.tf
 
-#echo "Adding $schema..."
-#cp $schema ./tmp_package
+echo "Adding $schema..."
+cp $schema ./tmp_package
 echo "Adding $variables..."
 cp $variables ./tmp_package
 echo "Adding image_subscription.tf..."
