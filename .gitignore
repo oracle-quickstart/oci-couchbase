@@ -10,3 +10,6 @@ generator/provider.tf
 generator/generated.tf
 
 *scratch*
+
+# packaged .zip files
+util/*.zip
