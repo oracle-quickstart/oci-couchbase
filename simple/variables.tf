@@ -21,26 +21,36 @@ variable "ssh_public_key" {}
 # The defaults here will give you a cluster.  You can also modify these.
 # ---------------------------------------------------------------------------------------------------------------------
 
-variable "couchbase_server" {
-  type = "map"
-
-  default = {
-    shape         = "VM.Standard2.4"
-    node_count    = 6
-    version       = "6.0.2"
-    adminUsername = "couchbase"
-    adminPassword = "foo123!"
-  }
+variable "server_shape" {
+ default = "VM.Standard2.4"
 }
 
-variable "couchbase_syncgateway" {
-  type = "map"
+variable "server_count" {
+ default = 6
+}
 
-  default = {
-    shape      = "VM.Standard2.2"
-    node_count = 4
-    version    = "2.5.0"
-  }
+variable "server_version" {
+ default = "6.0.2"
+}
+
+variable "adminUsername" {
+ default = "couchbase"
+}
+
+variable "adminPassword" {
+ default = "foo123!"
+}
+
+variable "syncgateway_shape" {
+ default = "VM.Standard2.2"
+}
+
+variable "syncgateway_count" {
+ default = 4
+}
+
+variable "syncgateway_version" {
+ default = "2.5.0"
 }
 
 locals {

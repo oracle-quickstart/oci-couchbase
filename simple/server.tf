@@ -1,10 +1,10 @@
 resource "oci_core_instance" "couchbase_server" {
-  count               = "${var.couchbase_server["node_count"]}"
+  count               = "${var.server_count}"
   display_name        = "couchbase_server${count.index}"
   compartment_id      = "${var.compartment_ocid}"
   availability_domain = "${element(data.template_file.ad_names.*.rendered, count.index)}"
   fault_domain        = "FAULT-DOMAIN-${((count.index / length(data.template_file.ad_names.*.rendered)) % local.fault_domains_per_ad) +1}"
-  shape               = "${var.couchbase_server["shape"]}"
+  shape               = "${var.server_shape}"
   subnet_id           = "${oci_core_subnet.subnet.id}"
 
   source_details {
@@ -17,9 +17,9 @@ resource "oci_core_instance" "couchbase_server" {
 
     user_data = "${base64encode(format("%s\n%s\n%s\n%s\n%s\n",
       "#!/usr/bin/env bash",
-      "version=${var.couchbase_server["version"]}",
-      "adminUsername=${var.couchbase_server["adminUsername"]}",
-      "adminPassword=${var.couchbase_server["adminPassword"]}",
+      "version=${var.server_version}",
+      "adminUsername=${var.adminUsername}",
+      "adminPassword=${var.adminPassword}",
       file("../scripts/server.sh")
     ))}"
   }

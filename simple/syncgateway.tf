@@ -1,10 +1,10 @@
 resource "oci_core_instance" "couchbase_syncgateway" {
-  count               = "${var.couchbase_syncgateway["node_count"]}"
+  count               = "${var.syncgateway_count}"
   display_name        = "couchbase_syncgateway${count.index}"
   compartment_id      = "${var.compartment_ocid}"
   availability_domain = "${element(data.template_file.ad_names.*.rendered, count.index)}"
   fault_domain        = "FAULT-DOMAIN-${((count.index / length(data.template_file.ad_names.*.rendered)) % local.fault_domains_per_ad) +1}"
-  shape               = "${var.couchbase_syncgateway["shape"]}"
+  shape               = "${var.syncgateway_shape}"
   subnet_id           = "${oci_core_subnet.subnet.id}"
 
   source_details {
@@ -17,7 +17,7 @@ resource "oci_core_instance" "couchbase_syncgateway" {
 
     user_data = "${base64encode(format("%s\n%s\n%s\n",
       "#!/usr/bin/env bash",
-      "version=${var.couchbase_syncgateway["version"]}",
+      "version=${var.syncgateway_version}",
       file("../scripts/syncgateway.sh")
     ))}"
   }
