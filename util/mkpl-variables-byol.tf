@@ -1,25 +1,33 @@
 # ---------------------------------------------------------------------------------------------------------------------
-# Environmental variables
-# You probably want to define these as environmental variables.
-# Instructions on that are here: https://github.com/cloud-partners/oci-prerequisites
+# Marketplace variables
 # ---------------------------------------------------------------------------------------------------------------------
 
-# Required by the OCI Provider
+variable "mp_listing_id" {
+  default = "ocid1.appcataloglisting.oc1..aaaaaaaa34rp2h6epdvcutthmgpnegduad4iz7lyrxua7jnlv3n5wzqim6mq"
+}
+variable "mp_listing_resource_id" {
+  default = "ocid1.image.oc1..aaaaaaaatonlxvh7grpqo6d7jrtuu4b4qpfxbmjv2kmg3z5wgrwf747iunrq"
+}
+variable "mp_listing_resource_version" {
+ default = "1.0"
+}
+
+variable "use_marketplace_image" {
+  default = true
+}
+
 variable "tenancy_ocid" {}
-
 variable "compartment_ocid" {}
-variable "user_ocid" {}
-variable "fingerprint" {}
-variable "private_key_path" {}
 variable "region" {}
-
-# Key used to SSH to OCI VMs
-variable "ssh_public_key" {}
 
 # ---------------------------------------------------------------------------------------------------------------------
 # Optional variables
 # The defaults here will give you a cluster.  You can also modify these.
 # ---------------------------------------------------------------------------------------------------------------------
+
+variable "ssh_public_key" {
+  description = "Key used to SSH to OCI VMs."
+}
 
 variable "server_shape" {
  default = "VM.Standard2.4"
@@ -62,19 +70,7 @@ locals {
 # You probably don't need to change these.
 # ---------------------------------------------------------------------------------------------------------------------
 
-# Not used for normal terraform apply, added for ORM deployments.
-variable "ad_name" {
-  default = ""
-}
-
-# Not used for normal terraform apply, added for marketplace deployments.
-
-variable "mp_listing_resource_id" {
-  default = ""
-}
-
-// https://docs.cloud.oracle.com/iaas/images/image/66379f54-edd0-4294-895f-47291a3eb4ed/
-// Oracle-Linux-7.6-2019.05.14-0
+# Unused in a mkpl deployment
 variable "platform-images" {
   type = "map"
 

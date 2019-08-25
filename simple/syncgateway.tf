@@ -1,3 +1,12 @@
+locals {
+  # local.ad defined in server.tf
+
+  # Logic to choose platform or mkpl image based on
+  # var.marketplace_image being empty or not
+  # local.platform_image defined in server.tf
+  syncgateway_image = "${var.mp_listing_resource_id == "" ? local.platform_image : var.mp_listing_resource_id}"
+}
+
 resource "oci_core_instance" "couchbase_syncgateway" {
   count               = "${var.syncgateway_count}"
   display_name        = "couchbase_syncgateway${count.index}"
@@ -8,7 +17,7 @@ resource "oci_core_instance" "couchbase_syncgateway" {
   subnet_id           = "${oci_core_subnet.subnet.id}"
 
   source_details {
-    source_id   = "${var.images[var.region]}"
+    source_id   = "${local.syncgateway_image}"
     source_type = "image"
   }
 
