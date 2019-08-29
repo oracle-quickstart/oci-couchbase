@@ -1,8 +1,6 @@
 
 echo "Running disk setup..."
 
-diskCount=$(echo $json | jq -r $CONFIG_LOCATION.disk_count)
-
 # iscsiadm discovery/login
 # loop over various ip's but needs to only attempt disks that actually
 # do/will exist.

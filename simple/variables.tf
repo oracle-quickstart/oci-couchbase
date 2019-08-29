@@ -33,6 +33,16 @@ variable "server_version" {
  default = "6.0.2"
 }
 
+variable "disk_size" {
+  default = 500
+  description = "Size of block volume in GB for data, min 50."
+}
+
+variable "disk_count" {
+  default = 1
+  description = "Number of disks to create for each worker. Multiple disks will create a RAID0 array."
+}
+
 variable "adminUsername" {
  default = "couchbase"
 }

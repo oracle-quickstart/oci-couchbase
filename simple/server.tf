@@ -34,6 +34,7 @@ resource "oci_core_instance" "couchbase_server" {
       "version=${var.server_version}",
       "adminUsername=${var.adminUsername}",
       "adminPassword=${var.adminPassword}",
+      "diskCount=${var.disk_count}",
       file("../scripts/disks.sh"),
       file("../scripts/server.sh")
     )))}"
