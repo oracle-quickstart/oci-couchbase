@@ -4,7 +4,7 @@ locals {
   # Logic to choose platform or mkpl image based on
   # var.marketplace_image being empty or not
   # local.platform_image defined in server.tf
-  syncgateway_image = "${var.mp_listing_resource_id == "" ? local.platform_image : var.mp_listing_resource_id}"
+  syncgateway_image = "${var.mp_listing_resource_id == "" ? local.platform_image : var.mp_listing_resource_id_syncgateway}"
 }
 
 resource "oci_core_instance" "couchbase_syncgateway" {

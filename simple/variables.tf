@@ -40,7 +40,7 @@ variable "disk_size" {
 
 variable "disk_count" {
   default = 1
-  description = "Number of disks to create for each worker. Multiple disks will create a RAID0 array."
+  description = "Number of disks to create for each server. Multiple disks will create a RAID0 array."
 }
 
 variable "adminUsername" {
@@ -80,6 +80,10 @@ variable "ad_name" {
 # Not used for normal terraform apply, added for marketplace deployments.
 
 variable "mp_listing_resource_id" {
+  default = ""
+}
+
+variable "mp_listing_resource_id_syncgateway" {
   default = ""
 }
 
