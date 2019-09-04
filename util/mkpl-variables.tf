@@ -12,6 +12,16 @@ variable "mp_listing_resource_version" {
  default = "1.0"
 }
 
+variable "mp_listing_id_syncgateway" {
+  default = "ocid1.appcataloglisting.oc1..aaaaaaaa54n5bmzxn2canjulb4gcdc4rvwtc7qkmlxke3cmbxeuudplwhmbq"
+}
+variable "mp_listing_resource_id_syncgateway" {
+  default = "ocid1.image.oc1..aaaaaaaamcjj3ggx6jzrp5ujtzjeagoabldmqiiexunyk7xlrj5hpwemhj7a"
+}
+variable "mp_listing_resource_version_syncgateway" {
+ default = "1.0"
+}
+
 variable "use_marketplace_image" {
   default = true
 }
@@ -41,13 +51,21 @@ variable "server_version" {
  default = "6.0.2"
 }
 
+variable "disk_size" {
+  default = 500
+  description = "Size of block volume in GB for data, min 50."
+}
+
+variable "disk_count" {
+  default = 1
+  description = "Number of disks to create for each server. Multiple disks will create a RAID0 array."
+}
+
 variable "adminUsername" {
  default = "couchbase"
 }
 
-variable "adminPassword" {
- default = "foo123!"
-}
+variable "adminPassword" {}
 
 variable "syncgateway_shape" {
  default = "VM.Standard2.2"

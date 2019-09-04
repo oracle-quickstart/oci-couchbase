@@ -4,7 +4,7 @@ version: "20190612"
 locale: "en"
 groupings:
   - title: "Hidden General Configuration"
-    visible: true
+    visible: false
     variables:
     - tenancy_ocid
     - compartment_ocid
@@ -12,6 +12,9 @@ groupings:
     - mp_listing_id
     - mp_listing_resource_id
     - mp_listing_resource_version
+    - mp_listing_id_syncgateway
+    - mp_listing_resource_id_syncgateway
+    - mp_listing_resource_version_syncgateway
     - use_marketplace_image
     - server_version
     - syncgateway_version
@@ -25,6 +28,8 @@ groupings:
     #- ad_name
     - server_shape
     - server_count
+    - disk_size
+    - disk_count
     - syncgateway_shape
     - syncgateway_count
     - ssh_public_key
@@ -32,46 +37,53 @@ groupings:
     - adminPassword
 
 variables:
-#  ad_name:
-#    description: "Availability Domain where Couchbase instances are deployed."
-#    type: oci:identity:availabilitydomain:name
-#    dependsOn:
-#      compartmentId: ${compartment_ocid}
-#    required: true
-#    title: "Availability Domain"
 
   server_shape:
+    title: "Server Shape"
     description: "Shape for Couchbase server instances."
     type: oci:core:instanceshape:name
-    default: "VM.Standard2.2"
-    title: "Compute Shape"
+    default: "VM.Standard2.4"
     required: true
     dependsOn:
       compartmentId: ${compartment_ocid}
       imageId: ${mp_listing_resource_id}
 
   server_count:
-    description: "Number of Couchbase server instances."
+    title: "Number of Couchbase Server instances"
+    description: "Instances will be distributed sequentially between availability and fault domains available in the region."
     type: integer
     default: 6
-    title: "Compute Shape"
+    required: true
+
+  disk_size:
+    title: "Block volume size"
+    description: "Size in GB for block volumes attached to Server instances."
+    type: integer
+    default: 500
+    required: true
+
+  disk_count:
+    title: "Number of block volumes"
+    description: "Number of block volumes for each Server instance, if >1 disks will form a RAID0 array."
+    type: integer
+    default: 1
     required: true
 
   syncgateway_shape:
+    title: "Syncgateway Shape"
     description: "Shape for Couchbase syncgateway instances."
     type: oci:core:instanceshape:name
     default: "VM.Standard2.2"
-    title: "Compute Shape"
     required: true
     dependsOn:
       compartmentId: ${compartment_ocid}
       imageId: ${mp_listing_resource_id}
 
   syncgateway_count:
-    description: "Number of Couchbase syncgateway instances."
+    title: "Number of Couchbase Sync Gateway instances"
+    description: "Instances will be distributed sequentially between availability and fault domains available in the region"
     type: integer
-    default: 4
-    title: "Compute Shape"
+    default: 3
     required: true
 
   ssh_public_key:
@@ -87,12 +99,14 @@ variables:
 #    title: "Block Volume Size"
 
   adminUsername:
+    title: "User"
     description: "Default admin user."
     type: string
     default: "couchbase"
     required: true
 
   adminPassword:
+    title: "Password"
     description: "Password for default user."
     type: password
     default: ""

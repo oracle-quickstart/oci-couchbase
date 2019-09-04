@@ -30,12 +30,13 @@ echo "Adding $schema..."
 cp $schema ./tmp_package
 echo "Adding $variables..."
 cp $variables ./tmp_package
-echo "Adding image_subscription.tf..."
-cp image_subscription.tf ./tmp_package
+echo "Adding all image_subscription*.tf..."
+cp image_subscription*.tf ./tmp_package
 
 # Required path change since schema.yaml forces working directory to be
 # root of .zip
 sed -i '' "s:file(\"../scripts/server.sh\"):file(\"./scripts/server.sh\"):g" ./tmp_package/server.tf
+sed -i '' "s:file(\"../scripts/disks.sh\"):file(\"./scripts/disks.sh\"):g" ./tmp_package/server.tf
 sed -i '' "s:file(\"../scripts/syncgateway.sh\"):file(\"./scripts/syncgateway.sh\"):g" ./tmp_package/syncgateway.tf
 
 # Add latest git log entry
