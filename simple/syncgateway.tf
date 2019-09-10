@@ -21,6 +21,11 @@ resource "oci_core_instance" "couchbase_syncgateway" {
     source_type = "image"
   }
 
+  create_vnic_details {
+    subnet_id      = "${oci_core_subnet.subnet.id}"
+    hostname_label = "couchbase-syncgateway${count.index}"
+  }
+
   metadata {
     ssh_authorized_keys = "${var.ssh_public_key}"
 
@@ -30,14 +35,4 @@ resource "oci_core_instance" "couchbase_syncgateway" {
       file("../scripts/syncgateway.sh")
     )))}"
   }
-}
-
-data "oci_core_vnic_attachments" "couchbase_syncgateway_vnic_attachments" {
-  compartment_id      = "${var.compartment_ocid}"
-  availability_domain = "${lookup(data.oci_identity_availability_domains.availability_domains.availability_domains[0],"name")}"
-  instance_id         = "${oci_core_instance.couchbase_syncgateway.*.id[0]}"
-}
-
-data "oci_core_vnic" "couchbase_syncgateway_vnic" {
-  vnic_id = "${lookup(data.oci_core_vnic_attachments.couchbase_syncgateway_vnic_attachments.vnic_attachments[0],"vnic_id")}"
 }
