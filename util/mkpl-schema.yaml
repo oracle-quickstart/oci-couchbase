@@ -81,7 +81,7 @@ variables:
 
   syncgateway_count:
     title: "Number of Couchbase Sync Gateway instances"
-    description: "Instances will be distributed sequentially between availability and fault domains available in the region"
+    description: "Sync Gateway instances costs $0.524 per core hour, and will be distributed sequentially between availability and fault domains available in the region"
     type: integer
     default: 3
     required: true

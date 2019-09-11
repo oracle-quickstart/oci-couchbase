@@ -18,8 +18,8 @@ chkconfig firewalld off
 #######################################################"
 echo "Installing Couchbase Server..."
 
-wget https://packages.couchbase.com/releases/${version}/couchbase-server-enterprise-${version}-centos6.x86_64.rpm
-rpm --install couchbase-server-enterprise-${version}-centos6.x86_64.rpm
+wget https://packages.couchbase.com/releases/${version}/couchbase-server-enterprise-${version}-centos7.x86_64.rpm
+rpm --install couchbase-server-enterprise-${version}-centos7.x86_64.rpm
 
 #######################################################"
 ############ Turn Off Transparent Hugepages ###########"
@@ -78,8 +78,8 @@ do
   output=`./couchbase-cli node-init \
     --cluster=$nodeDNS \
     --node-init-hostname=$nodeDNS \
-    --user=$adminUsername \
-    --pass=$adminPassword`
+    -u=$adminUsername \
+    -p=$adminPassword`
   echo node-init output \'$output\'
   sleep 10
 done
@@ -105,8 +105,8 @@ else
   do
     output=`./couchbase-cli server-add \
       --cluster=$rallyDNS \
-      --user=$adminUsername \
-      --pass=$adminPassword \
+      -u=$adminUsername \
+      -p=$adminPassword \
       --server-add=$nodeDNS \
       --server-add-username=$adminUsername \
       --server-add-password=$adminPassword \
@@ -121,8 +121,8 @@ else
   do
     output=`./couchbase-cli rebalance \
     --cluster=$rallyDNS \
-    --user=$adminUsername \
-    --pass=$adminPassword`
+    -u=$adminUsername \
+    -p=$adminPassword`
     echo rebalance output \'$output\'
     sleep 10
   done
