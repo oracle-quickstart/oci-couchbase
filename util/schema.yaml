@@ -69,7 +69,7 @@ variables:
   syncgateway_count:
     description: "Number of Couchbase syncgateway instances."
     type: integer
-    default: 4
+    default: 0
     title: "Compute Shape"
     required: true
 
