@@ -76,7 +76,7 @@ variable "syncgateway_count" {
 }
 
 variable "syncgateway_version" {
- default = "2.5.0"
+ default = "2.6.0"
 }
 
 locals {
