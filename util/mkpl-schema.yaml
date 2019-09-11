@@ -83,7 +83,7 @@ variables:
     title: "Number of Couchbase Sync Gateway instances"
     description: "Sync Gateway instances costs $0.524 per core hour, and will be distributed sequentially between availability and fault domains available in the region"
     type: integer
-    default: 3
+    default: 0
     required: true
 
   ssh_public_key:
