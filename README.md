@@ -1,5 +1,5 @@
 # oci-quickstart-couchbase
-These are Terraform modules that deploy Couchbase Enterprise on Oracle Cloud Infrastructure (OCI). They are developed jointly by Oracle and Couchbase.
+These are Terraform modules that deploy Couchbase Enterprise on Oracle Cloud Infrastructure (OCI). They are developed jointly by Oracle and Couchbase.  For instructions on how to use this material and details on getting support from the vendor that maintains this material, please contact them directly.
 
 * [simple](simple) is a Terraform module that will deploy Couchbase on OCI. Instructions on how to use it are below.  
 * [generator](generator) is a Python script that will create a Terraform module.  It can be used to generate more complex configurations that take advantage of MDS.
