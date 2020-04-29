@@ -10,6 +10,7 @@ generator/provider.tf
 generator/generated.tf
 
 *scratch*
+*.DS_Store
 
 # packaged .zip files
 util/*.zip
