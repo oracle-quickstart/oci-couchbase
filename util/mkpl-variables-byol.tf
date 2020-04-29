@@ -5,30 +5,39 @@
 variable "mp_listing_id" {
   default = "ocid1.appcataloglisting.oc1..aaaaaaaa34rp2h6epdvcutthmgpnegduad4iz7lyrxua7jnlv3n5wzqim6mq"
 }
+
 variable "mp_listing_resource_id" {
   default = "ocid1.image.oc1..aaaaaaaatonlxvh7grpqo6d7jrtuu4b4qpfxbmjv2kmg3z5wgrwf747iunrq"
 }
+
 variable "mp_listing_resource_version" {
- default = "1.0"
+  default = "1.0"
 }
 
 variable "mp_listing_id_syncgateway" {
   default = "ocid1.appcataloglisting.oc1..aaaaaaaazphghxwsnimdtzawsuzyrcuct6lcmkc5homqmkqjfjl7spkatqdq"
 }
+
 variable "mp_listing_resource_id_syncgateway" {
   default = "ocid1.image.oc1..aaaaaaaa435lsxwxfsws7r6jvysfhhh5wuj6la3uvb3ehskhqtsh5tkfi4oa"
 }
+
 variable "mp_listing_resource_version_syncgateway" {
- default = "1.0"
+  default = "1.0"
 }
 
 variable "use_marketplace_image" {
   default = true
 }
 
-variable "tenancy_ocid" {}
-variable "compartment_ocid" {}
-variable "region" {}
+variable "tenancy_ocid" {
+}
+
+variable "compartment_ocid" {
+}
+
+variable "region" {
+}
 
 # ---------------------------------------------------------------------------------------------------------------------
 # Optional variables
@@ -40,43 +49,44 @@ variable "ssh_public_key" {
 }
 
 variable "server_shape" {
- default = "VM.Standard2.4"
+  default = "VM.Standard2.4"
 }
 
 variable "server_count" {
- default = 6
+  default = 6
 }
 
 variable "server_version" {
- default = "6.0.2"
+  default = "6.0.2"
 }
 
 variable "disk_size" {
-  default = 500
+  default     = 500
   description = "Size of block volume in GB for data, min 50."
 }
 
 variable "disk_count" {
-  default = 1
+  default     = 1
   description = "Number of disks to create for each server. Multiple disks will create a RAID0 array."
 }
 
 variable "adminUsername" {
- default = "couchbase"
+  default = "couchbase"
 }
 
-variable "adminPassword" {}
+variable "adminPassword" {
+}
 
 variable "syncgateway_shape" {
- default = "VM.Standard2.2"
+  default = "VM.Standard2.2"
 }
 
 variable "syncgateway_count" {
- default = 4
+  default = 4
 }
 
 variable "syncgateway_version" {
- default = "2.6.0"
+  default = "2.6.0"
 }
 
 locals {
@@ -90,7 +100,7 @@ locals {
 
 # Unused in a mkpl deployment
 variable "platform-images" {
-  type = "map"
+  type = map(string)
 
   default = {
     ap-seoul-1     = "ocid1.image.oc1.ap-seoul-1.aaaaaaaalhbuvdg453ddyhvnbk4jsrw546zslcfyl7vl4oxfgplss3ovlm4q"
@@ -102,3 +112,4 @@ variable "platform-images" {
     us-phoenix-1   = "ocid1.image.oc1.phx.aaaaaaaavtjpvg4njutkeu7rf7c5lay6wdbjhd4cxis774h7isqd6gktqzoa"
   }
 }
+

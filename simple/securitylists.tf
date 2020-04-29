@@ -6,19 +6,17 @@ locals {
 
 resource "oci_core_security_list" "security_list" {
   display_name   = "security_list"
-  compartment_id = "${var.compartment_ocid}"
-  vcn_id         = "${oci_core_virtual_network.virtual_network.id}"
+  compartment_id = var.compartment_ocid
+  vcn_id         = oci_core_virtual_network.virtual_network.id
 
-  egress_security_rules = [
-    {
-      protocol    = "${local.tcp_protocol}"
-      destination = "${local.anywhere}"
-    },
-  ]
+  egress_security_rules {
+    protocol    = local.tcp_protocol
+    destination = local.anywhere
+  }
 
   ingress_security_rules {
-    protocol = "${local.tcp_protocol}"
-    source   = "${local.anywhere}"
+    protocol = local.tcp_protocol
+    source   = local.anywhere
 
     tcp_options {
       max = "22"
@@ -27,13 +25,13 @@ resource "oci_core_security_list" "security_list" {
   }
 
   ingress_security_rules {
-    protocol = "${local.all_protocols}"
+    protocol = local.all_protocols
     source   = "10.0.0.0/16"
   }
 
   ingress_security_rules {
-    protocol = "${local.tcp_protocol}"
-    source   = "${local.anywhere}"
+    protocol = local.tcp_protocol
+    source   = local.anywhere
 
     tcp_options {
       max = "8091"
@@ -42,8 +40,8 @@ resource "oci_core_security_list" "security_list" {
   }
 
   ingress_security_rules {
-    protocol = "${local.tcp_protocol}"
-    source   = "${local.anywhere}"
+    protocol = local.tcp_protocol
+    source   = local.anywhere
 
     tcp_options {
       max = "4984"
@@ -51,3 +49,4 @@ resource "oci_core_security_list" "security_list" {
     }
   }
 }
+

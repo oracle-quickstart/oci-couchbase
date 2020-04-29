@@ -5,16 +5,27 @@
 # ---------------------------------------------------------------------------------------------------------------------
 
 # Required by the OCI Provider
-variable "tenancy_ocid" {}
+variable "tenancy_ocid" {
+}
 
-variable "compartment_ocid" {}
-variable "user_ocid" {}
-variable "fingerprint" {}
-variable "private_key_path" {}
-variable "region" {}
+variable "compartment_ocid" {
+}
+
+variable "user_ocid" {
+}
+
+variable "fingerprint" {
+}
+
+variable "private_key_path" {
+}
+
+variable "region" {
+}
 
 # Key used to SSH to OCI VMs
-variable "ssh_public_key" {}
+variable "ssh_public_key" {
+}
 
 # ---------------------------------------------------------------------------------------------------------------------
 # Optional variables
@@ -22,45 +33,45 @@ variable "ssh_public_key" {}
 # ---------------------------------------------------------------------------------------------------------------------
 
 variable "server_shape" {
- default = "VM.Standard2.4"
+  default = "VM.Standard2.4"
 }
 
 variable "server_count" {
- default = 6
+  default = 6
 }
 
 variable "server_version" {
- default = "6.0.2"
+  default = "6.0.2"
 }
 
 variable "disk_size" {
-  default = 500
+  default     = 500
   description = "Size of block volume in GB for data, min 50."
 }
 
 variable "disk_count" {
-  default = 1
+  default     = 1
   description = "Number of disks to create for each server. Multiple disks will create a RAID0 array."
 }
 
 variable "adminUsername" {
- default = "couchbase"
+  default = "couchbase"
 }
 
 variable "adminPassword" {
- default = "foo123!"
+  default = "foo123!"
 }
 
 variable "syncgateway_shape" {
- default = "VM.Standard2.2"
+  default = "VM.Standard2.2"
 }
 
 variable "syncgateway_count" {
- default = 4
+  default = 4
 }
 
 variable "syncgateway_version" {
- default = "2.5.0"
+  default = "2.5.0"
 }
 
 locals {
@@ -90,7 +101,7 @@ variable "mp_listing_resource_id_syncgateway" {
 // https://docs.cloud.oracle.com/iaas/images/image/66379f54-edd0-4294-895f-47291a3eb4ed/
 // Oracle-Linux-7.6-2019.05.14-0
 variable "platform-images" {
-  type = "map"
+  type = map(string)
 
   default = {
     ap-seoul-1     = "ocid1.image.oc1.ap-seoul-1.aaaaaaaalhbuvdg453ddyhvnbk4jsrw546zslcfyl7vl4oxfgplss3ovlm4q"
@@ -102,3 +113,4 @@ variable "platform-images" {
     us-phoenix-1   = "ocid1.image.oc1.phx.aaaaaaaavtjpvg4njutkeu7rf7c5lay6wdbjhd4cxis774h7isqd6gktqzoa"
   }
 }
+
