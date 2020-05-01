@@ -1,4 +1,4 @@
-# oci-quickstart-couchbase
+# oci-couchbase
 These are Terraform modules that deploy Couchbase Enterprise on Oracle Cloud Infrastructure (OCI). They are developed jointly by Oracle and Couchbase.
 
 * [simple](simple) is a Terraform module that will deploy Couchbase on OCI. Instructions on how to use it are below.  
@@ -10,7 +10,7 @@ First off you'll need to do some pre deploy setup.  That's all detailed [here](h
 ## Clone the Module
 Now, you'll want a local copy of this repo.  You can make that with the commands:
 
-    git clone https://github.com/oracle/oci-quickstart-couchbase.git
+    git clone https://github.com/oracle-quickstart/oci-couchbase.git
     cd oci-couchbase/simple
     ls
 
