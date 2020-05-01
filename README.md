@@ -11,7 +11,7 @@ First off you'll need to do some pre deploy setup.  That's all detailed [here](h
 Now, you'll want a local copy of this repo.  You can make that with the commands:
 
     git clone https://github.com/oracle/oci-quickstart-couchbase.git
-    cd oci-quickstart-couchbase/simple
+    cd oci-couchbase/simple
     ls
 
 That should give you this:
