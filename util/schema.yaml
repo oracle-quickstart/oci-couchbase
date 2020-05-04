@@ -1,0 +1,136 @@
+title: "Top Level Title"
+schemaVersion: 1.0.0
+version: "20190612"
+locale: "en"
+groupings:
+  - title: "Hidden General Configuration"
+    visible: false
+    variables:
+    - tenancy_ocid
+    - compartment_ocid
+    - region
+    - mp_listing_id
+    - mp_listing_resource_id
+    - mp_listing_resource_version
+    - mp_listing_id_syncgateway
+    - mp_listing_resource_id_syncgateway
+    - mp_listing_resource_version_syncgateway
+    - use_marketplace_image
+    - server_version
+    - syncgateway_version
+    # QS specific platform vars
+    #- ad_number
+    - platform-images
+
+  - title: "Couchbase Configuration"
+    visible: true
+    variables:
+    #- ad_name
+    - server_shape
+    - server_count
+    - disk_size
+    - disk_count
+    - syncgateway_shape
+    - syncgateway_count
+    - ssh_public_key
+    - adminUsername
+    - adminPassword
+
+variables:
+
+  server_shape:
+    title: "Server Shape"
+    description: "Shape for Couchbase server instances."
+    type: oci:core:instanceshape:name
+    default: "VM.Standard2.4"
+    required: true
+    dependsOn:
+      compartmentId: ${compartment_ocid}
+      imageId: ${mp_listing_resource_id}
+
+  server_count:
+    title: "Number of Couchbase Server instances"
+    description: "Instances will be distributed sequentially between availability and fault domains available in the region."
+    type: integer
+    default: 6
+    required: true
+
+  disk_size:
+    title: "Block volume size"
+    description: "Size in GB for block volumes attached to Server instances."
+    type: integer
+    default: 500
+    required: true
+
+  disk_count:
+    title: "Number of block volumes"
+    description: "Number of block volumes for each Server instance, if >1 disks will form a RAID0 array."
+    type: integer
+    default: 1
+    required: true
+
+  syncgateway_shape:
+    title: "Syncgateway Shape"
+    description: "Shape for Couchbase syncgateway instances."
+    type: oci:core:instanceshape:name
+    default: "VM.Standard2.2"
+    required: true
+    dependsOn:
+      compartmentId: ${compartment_ocid}
+      imageId: ${mp_listing_resource_id}
+
+  syncgateway_count:
+    title: "Number of Couchbase Sync Gateway instances"
+    description: "Instances will be distributed sequentially between availability and fault domains available in the region."
+    type: integer
+    default: 0
+    required: true
+
+  ssh_public_key:
+    description: "SSH public key for all instance."
+    type: string
+    required: true
+
+#  disk_size_gb:
+#    description: "Minimum size 50GB, <50GB volumes will not be created"
+#    type: integer
+#    required: true
+#    default: 0
+#    title: "Block Volume Size"
+
+  adminUsername:
+    title: "User"
+    description: "Default admin user."
+    type: string
+    default: "couchbase"
+    required: true
+
+  adminPassword:
+    title: "Password"
+    description: "Password for default user."
+    type: password
+    default: ""
+    required: true
+
+#  ad_number:
+#    description: "Shadowed TF value to ignore"
+#    type: integer
+#    required: true
+#    default: -1
+
+  mp_listing_id:
+    type: string
+    required: true
+    description: "Marketplace Listing ID"
+
+  mp_listing_resource_id:
+    type: oci:core:image:id
+    required: true
+    description: "Marketplace Image OCID"
+    dependsOn:
+      compartmentId: ${compartment_ocid}
+
+  mp_listing_resource_version:
+    type: string
+    required: true
+    description: "Marketplace Listing package version"
