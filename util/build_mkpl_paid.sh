@@ -2,11 +2,11 @@
 
 # Builds mkpl .zip for ORM. Uses local copy of existing TF.
 # Replaces: variables.tf
-# Adds: mkpl-schema.yaml, image_subscription.tf
+# Adds: schema_paid.yaml, image_subscription.tf
 # Output: $out_file
 
 out_file="mkpl.zip"
-schema="mkpl-schema.yaml"
+schema="schema_paid.yaml"
 variables="image-variables-paid.tf"
 
 echo "TEST cleanup"

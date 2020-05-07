@@ -2,11 +2,11 @@
 
 # Builds mkpl .zip for ORM. Uses local copy of existing TF.
 # Replaces: variables.tf
-# Adds: mkpl-schema.yaml, image_subscription.tf
+# Adds: schema.yaml, image_subscription.tf
 # Output: $out_file
 
 out_file="mkpl_byol.zip"
-schema="mkpl-schema.yaml"
+schema="schema.yaml"
 
 echo "TEST cleanup"
 rm -rf ./tmp_package
@@ -28,9 +28,6 @@ rm ./tmp_package/provider.tf
 
 echo "Adding $schema..."
 cp $schema ./tmp_package
-
-#echo "Adding all image_subscription*.tf..."
-#cp image_subscription*.tf ./tmp_package
 
 # Required path change since schema.yaml forces working directory to be
 # root of .zip
