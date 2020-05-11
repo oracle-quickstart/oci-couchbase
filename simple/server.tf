@@ -8,8 +8,7 @@ locals {
 
   # Logic to choose platform or mkpl image based on
   # var.marketplace_image being empty or not
-  platform_image = var.platform-images[var.region]
-  server_image   = var.mp_listing_resource_id == "" ? local.platform_image : var.mp_listing_resource_id
+  server_image   = var.mp_listing_resource_id
 }
 
 resource "oci_core_instance" "couchbase_server" {
@@ -17,7 +16,7 @@ resource "oci_core_instance" "couchbase_server" {
   display_name        = "couchbase_server${count.index}"
   compartment_id      = var.compartment_ocid
   availability_domain = element(data.template_file.ad_names.*.rendered, count.index)
-  fault_domain        = "FAULT-DOMAIN-${count.index / length(data.template_file.ad_names.*.rendered) % local.fault_domains_per_ad + 1}"
+  fault_domain        = "FAULT-DOMAIN-${count.index % 3 + 1}"
   shape               = var.server_shape
   subnet_id           = oci_core_subnet.subnet.id
 

@@ -18,9 +18,6 @@ groupings:
     - use_marketplace_image
     - server_version
     - syncgateway_version
-    # QS specific platform vars
-    #- ad_number
-    - platform-images
 
   - title: "Couchbase Configuration"
     visible: true
