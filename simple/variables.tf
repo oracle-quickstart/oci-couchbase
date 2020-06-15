@@ -32,7 +32,8 @@ variable "server_count" {
 }
 
 variable "server_version" {
-  default = "6.0.2"
+  # valid versions = 6.5.1, 6.5.0, 6.0.4, 6.0.3, 6.0.2
+  default = "6.5.1"
 }
 
 variable "disk_size" {
@@ -50,7 +51,6 @@ variable "adminUsername" {
 }
 
 variable "adminPassword" {
-  default = "foo123!"
 }
 
 variable "syncgateway_shape" {
@@ -62,7 +62,8 @@ variable "syncgateway_count" {
 }
 
 variable "syncgateway_version" {
-  default = "2.6.0"
+  # valid versions: 2.7.3, 2.7.2, 2.7.1, 2.7.0, 2.6.1, 2.6.0
+  default = "2.7.3"
 }
 
 locals {

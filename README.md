@@ -31,7 +31,7 @@ Now for the main attraction.  Let's make sure the plan looks good:
 
     terraform plan
 
-That gives:
+You'll be prompted to enter a value for `var.adminPassword` if you haven't set a default in [variables.tf](./simple/variables.tf). That gives:
 
 ![](./images/03%20-%20terraform%20plan.png)
 
@@ -50,7 +50,7 @@ When the `terraform apply` completed, it printed out two values.  One of those i
 
 ![](./images/05%20-%20server%20login.png)
 
-Now enter in the username and password you specified in [variables.tf](./simple/variables.tf).  You should now have a view of your cluster and the services running.
+Now enter in the username (default `couchbase`) and password you specified in [variables.tf](./simple/variables.tf), or the value you entered when prompted if not defined in the file.  You should now have a view of your cluster and the services running.
 
 ![](./images/06%20-%20server.png)
 
