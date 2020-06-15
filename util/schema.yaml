@@ -16,18 +16,18 @@ groupings:
     - mp_listing_resource_id_syncgateway
     - mp_listing_resource_version_syncgateway
     - use_marketplace_image
-    - server_version
-    - syncgateway_version
 
   - title: "Couchbase Configuration"
     visible: true
     variables:
     #- ad_name
     - server_shape
+    - server_version
     - server_count
     - disk_size
     - disk_count
     - syncgateway_shape
+    - syncgateway_version
     - syncgateway_count
     - ssh_public_key
     - adminUsername
@@ -44,6 +44,19 @@ variables:
     dependsOn:
       compartmentId: ${compartment_ocid}
       imageId: ${mp_listing_resource_id}
+
+  server_version:
+    title: "Server Version"
+    description: "Version for all nodes."
+    type: enum
+    default: "6.5.1"
+    required: true
+    enum:
+      - "6.5.1"
+      - "6.5.0"
+      - "6.0.4"
+      - "6.0.3"
+      - "6.0.2"
 
   server_count:
     title: "Number of Couchbase Server instances"
@@ -75,6 +88,20 @@ variables:
     dependsOn:
       compartmentId: ${compartment_ocid}
       imageId: ${mp_listing_resource_id}
+
+  syncgateway_version:
+    title: "Syncgateway Version"
+    description: "Version for all Syncgateway instances."
+    type: enum
+    default: "2.7.3"
+    required: true
+    enum:
+      - "2.7.3"
+      - "2.7.2"
+      - "2.7.1"
+      - "2.7.0"
+      - "2.6.1"
+      - "2.6.0"
 
   syncgateway_count:
     title: "Number of Couchbase Sync Gateway instances"
