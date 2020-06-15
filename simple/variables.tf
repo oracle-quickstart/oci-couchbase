@@ -69,13 +69,3 @@ variable "syncgateway_version" {
 locals {
   fault_domains_per_ad = 3
 }
-
-# ---------------------------------------------------------------------------------------------------------------------
-# Constants
-# You probably don't need to change these.
-# ---------------------------------------------------------------------------------------------------------------------
-
-# Not used for normal terraform apply, added for ORM deployments.
-variable "ad_name" {
-  default = ""
-}
