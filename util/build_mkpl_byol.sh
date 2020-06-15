@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
 # Builds mkpl .zip for ORM. Uses local copy of existing TF.
-# Replaces: variables.tf
-# Adds: schema.yaml, image_subscription.tf
+# Adds: schema.yaml
 # Output: $out_file
 
 out_file="mkpl_byol.zip"
